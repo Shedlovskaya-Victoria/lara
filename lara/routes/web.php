@@ -17,3 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/show', [UserController::class,'index']);
+Route::resource('/category', \App\Http\Controllers\CategoryController::class);
