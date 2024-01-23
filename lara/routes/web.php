@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 Route::get('/show', [UserController::class,'index']);
 Route::resource('/category', \App\Http\Controllers\CategoryController::class);
+Route::resource('/posts', \App\Http\Controllers\PostController::class);
