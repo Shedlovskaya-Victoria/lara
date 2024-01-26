@@ -13,9 +13,12 @@ use \App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\FrontController::class,'index'])->name('home');
+
+
+
+
 Route::get('/show', [UserController::class,'index']);
 Route::resource('/category', \App\Http\Controllers\CategoryController::class);
 Route::resource('/posts', \App\Http\Controllers\PostController::class);
+
