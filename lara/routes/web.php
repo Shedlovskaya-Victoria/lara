@@ -13,7 +13,8 @@ use \App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\FrontController::class,'index'])->name('home.index');
+Route::get('/', [\App\Http\Controllers\LoginController::class,'index'])->name('login.index');
+//Route::get('/', [\App\Http\Controllers\FrontController::class,'index'])->name('home.index');
 Route::get('/category/{category}', [\App\Http\Controllers\FrontController::class,'postInCategory'])->name('home.category');
 
 
@@ -23,5 +24,10 @@ Route::get('/show', [UserController::class,'index']);
 Route::prefix('admin')->group(function () {
     Route::resource('/category', \App\Http\Controllers\CategoryController::class);
     Route::resource('/posts', \App\Http\Controllers\PostController::class);
+    Route::resource('/login', \App\Http\Controllers\LoginController::class);
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
