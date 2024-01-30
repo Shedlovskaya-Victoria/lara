@@ -14,7 +14,6 @@ use \App\Http\Controllers\UserController;
 */
 
 Route::get('/', [\App\Http\Controllers\LoginController::class,'index'])->name('login.index');
-//Route::get('/', [\App\Http\Controllers\FrontController::class,'index'])->name('home.index');
 Route::get('/category/{category}', [\App\Http\Controllers\FrontController::class,'postInCategory'])->name('home.category');
 
 
@@ -26,6 +25,9 @@ Route::prefix('admin')->group(function () {
     Route::resource('/posts', \App\Http\Controllers\PostController::class);
     Route::resource('/login', \App\Http\Controllers\LoginController::class);
 });
+    Route::get('/index', [\App\Http\Controllers\FrontController::class,'index'])->name('home.index');
+    Route::get('/index/{front}', [\App\Http\Controllers\FrontController::class,'show'])->name('home.show');
+
 
 
 Auth::routes();
