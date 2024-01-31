@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/login', \App\Http\Controllers\LoginController::class);
 });
     Route::get('/index', [\App\Http\Controllers\FrontController::class,'index'])->name('home.index');
-    Route::get('/index/{front}', [\App\Http\Controllers\FrontController::class,'show'])->name('home.show');
+    Route::get('/article/{front}', [\App\Http\Controllers\FrontController::class,'show'])->name('home.show');
 
 
 
