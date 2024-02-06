@@ -125,6 +125,16 @@
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/barryvdh/laravel-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/maximebf/debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/laravel/ui" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/phpstan/phpdoc-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/barryvdh/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/barryvdh/laravel-ide-helper" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/phpdocumentor/reflection-common" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/doctrine/event-manager" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
