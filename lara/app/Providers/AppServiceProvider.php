@@ -21,5 +21,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::defaultView('frontend.partials.pagination-simple-b5');
+
     }
 }

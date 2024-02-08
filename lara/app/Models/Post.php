@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $guarded = [];
     use HasFactory;
 
     public function calculateReadingTime($text, $wordsPerMinute = 120)
@@ -33,5 +34,8 @@ class Post extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+    public  function tags(){
+        return $this->belongsToMany(Tag::class)->as('tags');
     }
 }
