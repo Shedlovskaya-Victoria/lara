@@ -126,7 +126,6 @@
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/maximebf/debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/laravel/ui" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/phpstan/phpdoc-parser" />
-      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/barryvdh/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/barryvdh/laravel-ide-helper" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/phpdocumentor/reflection-common" />
@@ -135,6 +134,22 @@
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/doctrine/deprecations" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/doctrine/dbal" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/infyomlabs/laravel-generator" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/infyomlabs/laravel-ui-adminlte" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/infyomlabs/adminlte-templates" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/infyomlabs/laravel-generator-helpers" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/laracasts/flash" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/laravelcollective/html" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/symfony/var-exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/rappasoft/laravel-livewire-tables" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/livewire/livewire" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/blade-ui-kit/blade-icons" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/blade-ui-kit/blade-heroicons" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/yajra/laravel-datatables-html" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/yajra/laravel-datatables-oracle" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/yajra/laravel-datatables-buttons" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/infyomlabs/generator-builder" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

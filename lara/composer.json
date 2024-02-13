@@ -6,12 +6,21 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "doctrine/dbal": "~3.6",
         "guzzlehttp/guzzle": "^7.2",
+        "infyomlabs/adminlte-templates": "^6.0",
+        "infyomlabs/laravel-generator": "^6.0",
+        "infyomlabs/laravel-ui-adminlte": "^5.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.4",
-        "rcrowe/twigbridge": "^0.14.1"
+        "rappasoft/laravel-livewire-tables": "^3.2",
+        "rcrowe/twigbridge": "^0.14.1",
+        "yajra/laravel-datatables-buttons": "^9.0",
+        "yajra/laravel-datatables-html": "^9.0",
+        "yajra/laravel-datatables-oracle": "^10.0",
+        "infyomlabs/generator-builder": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

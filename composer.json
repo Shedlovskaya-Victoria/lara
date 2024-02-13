@@ -1,0 +1,5 @@
+{
+    "require": {
+        "infyomlabs/laravel-ui-adminlte": "^5.2"
+    }
+}

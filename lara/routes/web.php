@@ -17,6 +17,14 @@ use \App\Http\Controllers\UserController;
 Route::get('/', [\App\Http\Controllers\FrontController::class, 'index'])->name('home.index');
 Route::get('/post/{post}', [\App\Http\Controllers\FrontController::class, 'show'])->name('home.show');
 Route::get('/category/{category}', [\App\Http\Controllers\FrontController::class, 'postInCategory'])->name('home.category');
+Route::get('/tag/{tag}', [\App\Http\Controllers\FrontController::class, 'postInTag'])->name('home.tag');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+
+
+
 
 Route::get('/login', [\App\Http\Controllers\LoginController::class, 'index'])->name('login.index');
 
@@ -30,3 +38,15 @@ Route::prefix('admin')->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
