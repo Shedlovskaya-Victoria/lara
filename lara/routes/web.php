@@ -50,3 +50,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+
+Route::resource('posts', App\Http\Controllers\PostController::class);
+Route::resource('categories', App\Http\Controllers\CategoryController::class);
+Route::resource('tags', App\Http\Controllers\TagController::class);

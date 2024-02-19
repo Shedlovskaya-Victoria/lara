@@ -2,14 +2,99 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @OA\Schema(
+ *      schema="Post",
+ *      required={"title","description","image","slug","category_id"},
+ *      @OA\Property(
+ *          property="title",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="description",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="image",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="slug",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="created_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="updated_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      )
+ * )
+ */
 class Post extends Model
 {
-    protected $guarded = [];
-    use HasFactory;
+    public $table = 'posts';
 
+    public $fillable = [
+        'title',
+        'description',
+        'image',
+        'slug',
+        'category_id'
+    ];
+
+    protected $casts = [
+        'title' => 'string',
+        'description' => 'string',
+        'image' => 'string',
+        'slug' => 'string'
+    ];
+
+    public static array $rules = [
+        'title' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
+        'image' => 'required|string|max:255',
+        'slug' => 'required|string|max:255',
+        'category_id' => 'required',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable'
+    ];
+
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\Category::class, 'category_id');
+    }
+
+    public  function tags(){
+        return $this->belongsToMany(Tag::class)->as('tags');
+    }
+    public function postTags(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\PostTag::class, 'post_id');
+    }
     public function calculateReadingTime($text, $wordsPerMinute = 120)
     {
         // Разделяем текст на отдельные слова
@@ -30,12 +115,5 @@ class Post extends Model
             $readingTime .= "$minutes $str_minutes $seconds $str_seconds";
         }
         return $readingTime;
-    }
-
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
-    public  function tags(){
-        return $this->belongsToMany(Tag::class)->as('tags');
     }
 }

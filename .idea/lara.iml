@@ -150,6 +150,11 @@
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/yajra/laravel-datatables-oracle" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/yajra/laravel-datatables-buttons" />
       <excludeFolder url="file://$MODULE_DIR$/lara/vendor/infyomlabs/generator-builder" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/zircote/swagger-php" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/darkaonline/l5-swagger" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/infyomlabs/swagger-generator" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/lara/vendor/swagger-api/swagger-ui" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

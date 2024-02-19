@@ -5,59 +5,141 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateCategoryAPIRequest;
 use App\Http\Requests\API\UpdateCategoryAPIRequest;
 use App\Models\Category;
-use App\Repositories\CategoryRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 
 /**
- * Class CategoryAPIController
+ * Class CategoryController
  */
+
 class CategoryAPIController extends AppBaseController
 {
-    private CategoryRepository $categoryRepository;
-
-    public function __construct(CategoryRepository $categoryRepo)
-    {
-        $this->categoryRepository = $categoryRepo;
-    }
-
     /**
-     * Display a listing of the Categories.
-     * GET|HEAD /categories
+     * @OA\Get(
+     *      path="/categories",
+     *      summary="getCategoryList",
+     *      tags={"Category"},
+     *      description="Get all Categories",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Category")
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function index(Request $request): JsonResponse
     {
-        $categories = $this->categoryRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $query = Category::query();
+
+        if ($request->get('skip')) {
+            $query->skip($request->get('skip'));
+        }
+        if ($request->get('limit')) {
+            $query->limit($request->get('limit'));
+        }
+
+        $categories = $query->get();
 
         return $this->sendResponse($categories->toArray(), 'Categories retrieved successfully');
     }
 
     /**
-     * Store a newly created Category in storage.
-     * POST /categories
+     * @OA\Post(
+     *      path="/categories",
+     *      summary="createCategory",
+     *      tags={"Category"},
+     *      description="Create Category",
+     *      @OA\RequestBody(
+     *        required=true,
+     *        @OA\JsonContent(ref="#/components/schemas/Category")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/Category"
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function store(CreateCategoryAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
-        $category = $this->categoryRepository->create($input);
+        /** @var Category $category */
+        $category = Category::create($input);
 
         return $this->sendResponse($category->toArray(), 'Category saved successfully');
     }
 
     /**
-     * Display the specified Category.
-     * GET|HEAD /categories/{id}
+     * @OA\Get(
+     *      path="/categories/{id}",
+     *      summary="getCategoryItem",
+     *      tags={"Category"},
+     *      description="Get Category",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id of Category",
+     *           @OA\Schema(
+     *             type="integer"
+     *          ),
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/Category"
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function show($id): JsonResponse
     {
         /** @var Category $category */
-        $category = $this->categoryRepository->find($id);
+        $category = Category::find($id);
 
         if (empty($category)) {
             return $this->sendError('Category not found');
@@ -67,35 +149,100 @@ class CategoryAPIController extends AppBaseController
     }
 
     /**
-     * Update the specified Category in storage.
-     * PUT/PATCH /categories/{id}
+     * @OA\Put(
+     *      path="/categories/{id}",
+     *      summary="updateCategory",
+     *      tags={"Category"},
+     *      description="Update Category",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id of Category",
+     *           @OA\Schema(
+     *             type="integer"
+     *          ),
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @OA\RequestBody(
+     *        required=true,
+     *        @OA\JsonContent(ref="#/components/schemas/Category")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  ref="#/components/schemas/Category"
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function update($id, UpdateCategoryAPIRequest $request): JsonResponse
     {
-        $input = $request->all();
-
         /** @var Category $category */
-        $category = $this->categoryRepository->find($id);
+        $category = Category::find($id);
 
         if (empty($category)) {
             return $this->sendError('Category not found');
         }
 
-        $category = $this->categoryRepository->update($input, $id);
+        $category->fill($request->all());
+        $category->save();
 
         return $this->sendResponse($category->toArray(), 'Category updated successfully');
     }
 
     /**
-     * Remove the specified Category from storage.
-     * DELETE /categories/{id}
-     *
-     * @throws \Exception
+     * @OA\Delete(
+     *      path="/categories/{id}",
+     *      summary="deleteCategory",
+     *      tags={"Category"},
+     *      description="Delete Category",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id of Category",
+     *           @OA\Schema(
+     *             type="integer"
+     *          ),
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="string"
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function destroy($id): JsonResponse
     {
         /** @var Category $category */
-        $category = $this->categoryRepository->find($id);
+        $category = Category::find($id);
 
         if (empty($category)) {
             return $this->sendError('Category not found');
