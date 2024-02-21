@@ -14,44 +14,25 @@ use \App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\FrontController::class, 'index'])->name('home.index');
-Route::get('/post/{post}', [\App\Http\Controllers\FrontController::class, 'show'])->name('home.show');
-Route::get('/category/{category}', [\App\Http\Controllers\FrontController::class, 'postInCategory'])->name('home.category');
-Route::get('/tag/{tag}', [\App\Http\Controllers\FrontController::class, 'postInTag'])->name('home.tag');
+Route::prefix('blog')->group(function (){
+    Route::get('/', [\App\Http\Controllers\FrontController::class, 'index'])->name('home.index');
+    Route::get('/post/{post}', [\App\Http\Controllers\FrontController::class, 'show'])->name('home.show');
+    Route::get('/category/{category}', [\App\Http\Controllers\FrontController::class, 'postInCategory'])->name('home.category');
+    Route::get('/tag/{tag}', [\App\Http\Controllers\FrontController::class, 'postInTag'])->name('home.tag');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-
-
-
-
-Route::get('/login', [\App\Http\Controllers\LoginController::class, 'index'])->name('login.index');
-
-Route::prefix('admin')->group(function () {
-    Route::resource('/category', \App\Http\Controllers\CategoryController::class);
-    Route::resource('/posts', \App\Http\Controllers\PostController::class);
-    Route::resource('/login', \App\Http\Controllers\LoginController::class);
 });
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
 
 
-Route::resource('posts', App\Http\Controllers\PostController::class);
-Route::resource('categories', App\Http\Controllers\CategoryController::class);
-Route::resource('tags', App\Http\Controllers\TagController::class);
+
+Route::get('/', [\App\Http\Controllers\LoginController::class, 'index'])->name('login.index');
+
+Route::prefix('/admin')->group(function () {
+    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+    Route::resource('posts', \App\Http\Controllers\PostController::class);
+    Route::resource('tags', App\Http\Controllers\TagController::class);
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+})->middleware('auth');
+
+
+
