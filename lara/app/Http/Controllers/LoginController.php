@@ -29,14 +29,6 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $request->validate([
-            'name',
-            'email',
-            'password'
-        ]);
-       $bdUser = User::find($user->name);
-        if($bdUser!=null && $bdUser->password == $user->password)
-            redirect('/blog');
         //
     }
 

@@ -19,13 +19,11 @@ Route::prefix('blog')->group(function (){
     Route::get('/post/{post}', [\App\Http\Controllers\FrontController::class, 'show'])->name('home.show');
     Route::get('/category/{category}', [\App\Http\Controllers\FrontController::class, 'postInCategory'])->name('home.category');
     Route::get('/tag/{tag}', [\App\Http\Controllers\FrontController::class, 'postInTag'])->name('home.tag');
-
+    Route::resource('user',\App\Http\Controllers\UserController::class);
 });
 Auth::routes();
 
-
-
-Route::get('/', [\App\Http\Controllers\LoginController::class, 'index'])->name('login.index');
+Route::resource('/', \App\Http\Controllers\LoginController::class);
 
 Route::prefix('/admin')->group(function () {
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
