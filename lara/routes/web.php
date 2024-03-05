@@ -19,7 +19,7 @@ Route::prefix('blog')->group(function (){
     Route::get('/post/{post}', [\App\Http\Controllers\FrontController::class, 'show'])->name('home.show');
     Route::get('/category/{category}', [\App\Http\Controllers\FrontController::class, 'postInCategory'])->name('home.category');
     Route::get('/tag/{tag}', [\App\Http\Controllers\FrontController::class, 'postInTag'])->name('home.tag');
-    Route::resource('user',\App\Http\Controllers\UserController::class);
+    Route::resource('/user',\App\Http\Controllers\UserController::class);
 });
 Auth::routes();
 
@@ -27,8 +27,9 @@ Route::resource('/', \App\Http\Controllers\LoginController::class);
 
 Route::prefix('/admin')->group(function () {
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
-    Route::resource('posts', \App\Http\Controllers\PostController::class);
+    Route::resource('/posts', \App\Http\Controllers\PostController::class);
     Route::resource('tags', App\Http\Controllers\TagController::class);
+    Route::resource('users',UserController::class);
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 })->middleware('auth');
 

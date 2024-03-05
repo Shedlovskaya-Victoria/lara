@@ -12,7 +12,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('backend.login');
+        return view('auth.login');
     }
 
     /**
@@ -20,7 +20,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        return view('backend.register');
+        return view('auth.register');
         //
     }
 

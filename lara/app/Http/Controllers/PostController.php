@@ -20,8 +20,7 @@ class PostController extends AppBaseController
         /** @var Post $posts */
         $posts = Post::paginate(10);
 
-        return view('posts.index')
-            ->with('posts', $posts);
+        return view('posts.index')->with('posts', $posts);
     }
 
 
